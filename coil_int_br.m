@@ -1,4 +1,4 @@
-function Br = coil_int_br(r,z,a_,z_)
+function Br = coil_int_br(r,z,a_,z_,coil)
 %INTEGRAND This function computes the integrand of the Biot-Savart integral
 %   The function computes the integrand for the Biot-Savart integral used
 %   to compute the magnetic field of a circular current density

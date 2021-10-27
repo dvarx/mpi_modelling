@@ -2,9 +2,14 @@
 
 mu0=4*pi*1e-7;
 
+%coil structure describing the coil
 coil.do=30e-2;
 coil.di=20e-2;
 coil.h=30e-2;
+coil.i=1;
+coil.ox=1e-3;
+coil.oy=0;
+
 r=30e-2;
 z=20e-2;
 %current density
@@ -29,7 +34,7 @@ for i=1:1:length(zs)
         fields(i,j,2)=integral2(integrand_br,coil.di/2,coil.do/2,-coil.h,0);
         
         %alternative way of computation
-        fields_control(i,j,:)=coil_field(r,z,coil);
+        fields_control(i,j,:)=coil_field(r,z,0,coil);
     end
 end
 
@@ -37,4 +42,4 @@ figure(1);
 quiver(zs_grid,rs_grid,fields(:,:,1),fields(:,:,2));
 %alternative computation by directly calling coil_field function
 figure(2);
-quiver(zs_grid,rs_grid,fields(:,:,1),fields_control(:,:,2));
+quiver(zs_grid,rs_grid,fields_control(:,:,1),fields_control(:,:,2));
