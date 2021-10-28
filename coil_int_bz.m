@@ -10,6 +10,7 @@ mu0=4*pi*1e-7;
 
 %k^2=M=4*a_.*r./((a_+r).^2+(z-z_).^2)
 M=4*a_.*r./((a_+r).^2+(z-z_).^2);
+
 [K,E]=ellipke(M);
 
 % function handle for Bz integration

@@ -35,8 +35,8 @@ if(coil_offset)
     
     %fprintf("x:%f y:%f B:[%f;%f]\n",x,y,Bz*1e9,Br*1e9);
     
-    B=[Brphi(1),Brphi(2),Bz];
+    B=coil.Jcoil*[Brphi(1),Brphi(2),Bz];
 else
-    B=[Br;0;Bz];
+    B=coil.Jcoil*[Br;0;Bz];
 end
 

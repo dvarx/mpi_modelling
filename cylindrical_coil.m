@@ -4,7 +4,7 @@ mu0=4*pi*1e-7;
 Ncoil=1000;
 di=50e-3;
 do=90e-3;
-J=10/((90e-3-50e-3)*85e-3);
+Jcoil=10/((90e-3-50e-3)*85e-3);
 
 %coil structure describing the coil
 %coil 1 definition
@@ -14,7 +14,7 @@ coil_1.h=85e-3;
 coil_1.i=1;
 coil_1.ox=-49e-3;
 coil_1.oy=28.29e-3;
-coil_1.J=J;
+coil_1.Jcoil=Jcoil;
 %coil 2 definition
 coil_2.do=90e-3;
 coil_2.di=50e-3;
@@ -22,7 +22,7 @@ coil_2.h=85e-3;
 coil_2.i=1;
 coil_2.ox=49e-3;
 coil_2.oy=28.29e-3;
-coil_2.J=J;
+coil_2.Jcoil=Jcoil;
 %coil 3 definition
 coil_3.do=90e-3;
 coil_3.di=50e-3;
@@ -30,7 +30,7 @@ coil_3.h=85e-3;
 coil_3.i=1;
 coil_3.ox=0;
 coil_3.oy=-56.58e-3;
-coil_3.J=J;
+coil_3.Jcoil=Jcoil;
 
 coil_config.coils=[coil_1,coil_2,coil_3];
 
