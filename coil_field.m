@@ -1,13 +1,10 @@
 function [B] = coil_field(r_wrto,z_wrto,phi_wrto,coil)
 %COIL FIELD:    
-%   r_wrto:      r coordinate where field should be evaluated wrt main
-%   origin
-%   z_wrto:      z coordinate where field should be evaluated wrt main
-%   origin
-%   phi_wrto:    phi coordintae where field should be evaluated wrt main
-%   origin
+%   r_wrto:      r coordinate where field should be evaluated wrt main origin
+%   z_wrto:      z coordinate where field should be evaluated wrt main origin
+%   phi_wrto:    phi coordintae where field should be evaluated wrt main origin
 %   coil:       coil structure
-%   B:          B(1): z component B(2): r component
+%   return B:          [Br,Bphi,Bz]
 
 %check if the coil center axis is offset wrt to the main coordinate system
 %z axis. If it is, compute coordinate locations in this coils coordinate
@@ -34,11 +31,12 @@ if(coil_offset)
     x=r_wrto*cos(phi_wrto);
     y=r_wrto*sin(phi_wrto);
     %compute solution in cartesian coordinates wrt main origin
-    B=(Br*[x-coil.ox;y-coil.oy]+Bz*[-(y-coil.oy);x-coil.oy])...
-        /(sqrt((x-coil.ox)^2+(y-coil.oy)^2));
-    %convert solution to cylindrical coordinates wrt main origin
-    B=[x,-y;y,x]/(sqrt(x^2+y^2))*B;
+    Brphi=(Br.*[x-coil.ox;y-coil.oy])./(sqrt((x-coil.ox)^2+(y-coil.oy).^2));
+    
+    %fprintf("x:%f y:%f B:[%f;%f]\n",x,y,Bz*1e9,Br*1e9);
+    
+    B=[Brphi(1),Brphi(2),Bz];
 else
-    B=[Bz;Br];
+    B=[Br;0;Bz];
 end
 

@@ -1,7 +1,10 @@
 function Br = coil_int_br(r,z,a_,z_,coil)
-%INTEGRAND This function computes the integrand of the Biot-Savart integral
-%   The function computes the integrand for the Biot-Savart integral used
-%   to compute the magnetic field of a circular current density
+%INTEGRAND This function computes the integrand of the Biot-Savart integral and returns a function handle
+%   r:  r coordinate where field should be computed wrto coil origin
+%   z:  z coordinate where field should be computed wrto coil origin
+%   a_: integration variable a (radius of circular wire loop)
+%   z_: integration variable z (z position of circular wire loop)
+%   return Br: function handle for the integrand
 
 mu0=4*pi*1e-7;
 
