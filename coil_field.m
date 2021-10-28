@@ -9,9 +9,9 @@ function [B] = coil_field(r_wrto,z_wrto,phi_wrto,coil)
 %check if the coil center axis is offset wrt to the main coordinate system
 %z axis. If it is, compute coordinate locations in this coils coordinate
 %system (r,phi)
-coil_offset=(coil.ox>1e-9)|(coil.oy>1e-9);
+coil_offset=(abs(coil.ox)>1e-9)|(abs(coil.oy)>1e-9);
 if(coil_offset)
-    r=sqrt((cos(phi_wrto)*r_wrto-coil.ox)^2+(sin(phi_wrto)*r_wrto^2));
+    r=sqrt((cos(phi_wrto).*r_wrto-coil.ox).^2+(sin(phi_wrto).*r_wrto-coil.oy).^2);
 else
     r=r_wrto;
 end
@@ -31,7 +31,7 @@ if(coil_offset)
     x=r_wrto*cos(phi_wrto);
     y=r_wrto*sin(phi_wrto);
     %compute solution in cartesian coordinates wrt main origin
-    Brphi=(Br.*[x-coil.ox;y-coil.oy])./(sqrt((x-coil.ox)^2+(y-coil.oy).^2));
+    Brphi=(Br.*[x-coil.ox;y-coil.oy])./(sqrt((x-coil.ox).^2+(y-coil.oy).^2));
     
     %fprintf("x:%f y:%f B:[%f;%f]\n",x,y,Bz*1e9,Br*1e9);
     
