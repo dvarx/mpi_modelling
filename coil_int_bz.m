@@ -5,8 +5,9 @@ function Bz = coil_int_bz(r,z,a_,z_)
 
 mu0=4*pi*1e-7;
 
-k=sqrt(4*a_.*r./((a_+r).^2+(z-z_).^2));
-[K,E]=ellipke(k);
+%k^2=M=4*a_.*r./((a_+r).^2+(z-z_).^2)
+M=4*a_.*r./((a_+r).^2+(z-z_).^2);
+[K,E]=ellipke(M);
 
 % function handle for Bz integration
 Bz=mu0./(2*pi*sqrt((a_+r).^2+(z-z_).^2))...
